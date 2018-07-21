@@ -1,3 +1,4 @@
+#code ="UTF-8"
 package luyou;
 
 import java.io.File;
@@ -27,16 +28,16 @@ public class lyone {
 			IOException {
 
 		Scanner scan = new Scanner(System.in);
-		System.out.println("ÇëÊäÈëÂ·ÓÉÆ÷mac:");
+		System.out.println("è¯·è¾“å…¥è·¯ç”±å™¨mac:");
 		String read = scan.nextLine();
 		while (!read.equals("exit")) {
-			// ¶ÁÈ¡read excel Í³¼Æ²¢Êä³öread½á¹û
+			// è¯»å–read excel ç»Ÿè®¡å¹¶è¾“å‡ºreadç»“æœ
 			getdata(read);
 
-			System.out.println("ÇëÊäÈëÂ·ÓÉÆ÷mac:");
+			System.out.println("è¯·è¾“å…¥è·¯ç”±å™¨mac:");
 			read = scan.nextLine();
 		}
-		System.out.println("Í³¼Æ½áÊø");
+		System.out.println("ç»Ÿè®¡ç»“æŸ");
 	}
 
 	public static void getdata(String read) throws InvalidFormatException,
@@ -47,11 +48,11 @@ public class lyone {
 		Workbook workbook = WorkbookFactory.create(filein);
 
 		Sheet sheet = workbook.getSheetAt(0);
-		// »ñÈ¡×î´óĞĞÊı
+		// è·å–æœ€å¤§è¡Œæ•°
 		int sheetLength = sheet.getLastRowNum();
-		// »ñÈ¡µÚÒ»ĞĞÎ»ÖÃ
+		// è·å–ç¬¬ä¸€è¡Œä½ç½®
 		int sheetfirt = sheet.getFirstRowNum();
-		// »ñÈ¡sheet±íÃû³Æ
+		// è·å–sheetè¡¨åç§°
 		String name = sheet.getSheetName();
 		int passby = 0;
 		int loss = 0;
@@ -83,28 +84,28 @@ public class lyone {
 
 			String type = null;
 			if (time <= 6 * 60) {
-				type = "Â·ÈË";
+				type = "è·¯äºº";
 				passby++;
 				passbylist.add(map);
 			} else if (time > 6 * 60 && time < 10 * 60) {
-				type = "Ç±ÔÚ";
+				type = "æ½œåœ¨";
 				loss++;
 				losslist.add(map);
 			} else {
-				type = "¹Ë¿Í";
+				type = "é¡¾å®¢";
 				into++;
 				intolist.add(map);
 			}
 		}
-		// °ÑÂ·ÈË¡¢¹Ë¿Í¡¢Ç±ÔÚÓÃ»§µÄÊı¾İ·ÅÈëÒ»¸öMapÈİÆ÷Àï
+		// æŠŠè·¯äººã€é¡¾å®¢ã€æ½œåœ¨ç”¨æˆ·çš„æ•°æ®æ”¾å…¥ä¸€ä¸ªMapå®¹å™¨é‡Œ
 		Map<String, List<Map>> maplist = new HashMap<>();
-		maplist.put("Ç±ÔÚ", losslist);
-		maplist.put("Â·ÈË", passbylist);
-		maplist.put("¹Ë¿Í", intolist);
+		maplist.put("æ½œåœ¨", losslist);
+		maplist.put("è·¯äºº", passbylist);
+		maplist.put("é¡¾å®¢", intolist);
 
-		// ´´½¨ĞÂµÄ¹¤×÷²¾
+		// åˆ›å»ºæ–°çš„å·¥ä½œç°¿
 		Workbook wb1 = new HSSFWorkbook();
-		// ±éÀúMap¼¯ºÏ
+		// éå†Mapé›†åˆ
 		for (String key : maplist.keySet()) {
 			System.out.println(key + "-" + maplist.get(key).size());
 			Sheet sheet1 = wb1.createSheet(key);
